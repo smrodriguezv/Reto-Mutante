@@ -66,7 +66,7 @@ def BuscaSecuencia (dnaEje):
     cantSec=0
     for i in range(len(SEC_PERMITIDA)):
         encuentro=dnaEje.find(SEC_PERMITIDA[i],0,(len(dnaEje)-1))
-        while (encuentro>=1):
+        while (encuentro>=0):
             cantSec +=1;
             encuentro=dnaEje.find(SEC_PERMITIDA[i],(encuentro+len(SEC_PERMITIDA[i])),(len(dnaEje)-1))
             if cantSec >= SEC_VALIDA:
