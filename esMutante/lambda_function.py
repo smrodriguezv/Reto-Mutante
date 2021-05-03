@@ -15,8 +15,7 @@ def lambda_handler(event, context):
         if respons['ResponseMetadata']['HTTPStatusCode']!=200:
             return {
                 'statusCode': respons['ResponseMetadata']['HTTPStatusCode'],
-                'descripción': result['descripcion']
+                'descripción': result['descripcion'],
                 'descripción1': "No se almacenó la información"
             }   
     return result
-    

@@ -1,4 +1,5 @@
 
+
 #Se definen variables de constantes
 SEC_PERMITIDA= ("AAAA","CCCC","GGGG","TTTT") #Representa las secuencias que identifica las posibilidad de ser Mutante.
 TOTAL_EJES = 4 #Representa la cantidad de Ejes, horizontal, vertical, oblicuo derecha->Izquierda, y oblicuo izquierda->Derecha.

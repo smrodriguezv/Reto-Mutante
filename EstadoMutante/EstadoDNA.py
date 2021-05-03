@@ -16,19 +16,19 @@ def busquedaMutantes(descripcion):
 def ratio_mutante():
     
     resultado=busquedaMutantes("HUMANO_MUTANTE")
-    if resultado['ResponseMetadata']['HTTPStatusCode']!=200
+    if resultado['ResponseMetadata']['HTTPStatusCode']!=200:
         respuesta= {
-                'statusCode':resultado['ResponseMetadata']['HTTPStatusCode']
-                'descripción':"Error en la lectura de Base de Datos",
+                'statusCode':resultado['ResponseMetadata']['HTTPStatusCode'],
+                'descripción':"Error en la lectura de Base de Datos"
         }
         return respuesta
     cant_Mutantes=resultado["Count"]
     
     resultado=busquedaMutantes("HUMANO_NO_MUTANTE")
-    if resultado['ResponseMetadata']['HTTPStatusCode']!=200
+    if resultado['ResponseMetadata']['HTTPStatusCode']!=200:
         respuesta= {
-                'statusCode':resultado['ResponseMetadata']['HTTPStatusCode']
-                'descripción':"Error en la lectura de Base de Datos",
+                'statusCode':resultado['ResponseMetadata']['HTTPStatusCode'],
+                'descripción':"Error en la lectura de Base de Datos"
         }
         return respuesta
     cant_No_Mutantes=resultado["Count"]
