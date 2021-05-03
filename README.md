@@ -121,7 +121,7 @@ Se crean 6 archivos python que consta de 4 funcionales y otros 2 para realizar p
 	la respuesta del metodo principal regresa la cantidad de secuencias encontradas, >1 significa que es Mutante.
 	
 1.4. AlmacenaDna.py
-	Contiene un metodo principal AlmacenDna(dna,result), que almacena en base de datos Dynamondb de AWS, para ello fuen necesario configurarlo y crear una tabla llamada 'RegistrosDna', donde tiene dos llaves cuya
+	Contiene un metodo principal AlmacenDna(dna,result), que almacena en base de datos Dynamodb de AWS, para ello fuen necesario configurarlo y crear una tabla llamada 'RegistrosDna', donde tiene dos llaves cuya
 	llave de partición es la descripción (Cadena) que es igual a 'descripción' y la llave de ordenación es el ADN (Cadena) que es igual al 'adn', en la descripción se almacena si es mutante(HUMANO_MUTANTE)o si 
 	no lo ES (HUMANO_NO_MUTANTE).
 	Si el ADN ya se encuentra registrado, solo actualiza el registro, no se crean dos registros con el mismo ADN. 
@@ -164,7 +164,7 @@ Se crean 2 archivos python que consta de la funcionalidad para consultar el rati
 
 2.1 lambda_function.py
 	Es la que recibe el consumo de api rest GET /stats sin cuerpo, y luego hace llamado a la función de EstadoDNA.ratio_mutante() que se encuentra en archivo EstadoDNA quien realzia la busqueda en base 
-	de datos dynamondb de AWS cuya tabla es 'RegistrosDna', los ADN y el calculo del ratio. éste metodo regresa el siguiente cuerpo:
+	de datos Dynamodb de AWS cuya tabla es 'RegistrosDna', los ADN y el calculo del ratio. éste metodo regresa el siguiente cuerpo:
 	{
 		'statusCode':200
 		'count_mutant_dna':Cantidad de mutantes,
@@ -178,7 +178,7 @@ Se crean 2 archivos python que consta de la funcionalidad para consultar el rati
 	}
 
 2.2 EstadoDNA.py
-	Contiene metodo principal de realizar consulta de base de datos y regresar el ratio -> ratio_mutante(), esta realiza la busqueda en base de datos de Dynamondb en AWS, cuya tabla es RegistrosDna, realiza
+	Contiene metodo principal de realizar consulta de base de datos y regresar el ratio -> ratio_mutante(), esta realiza la busqueda en base de datos de Dynamodb en AWS, cuya tabla es RegistrosDna, realiza
 	primero la busqueda de registros cuya descripcion (llave de partición)='HUMANO_MUTANTE' ->busquedaMutantes(descripcion), De ella valida si fue correcta la lectura, y cuantos mutantes existen,
 	luego realiza el mismo proceso para conocer el resultade cuantos Humanos no mutante son (llave de partición)='HUMANO_NO_MUTANTE', de ello genera el calculo del ratio y regresa la siguiente estructura:
 	{
@@ -201,12 +201,13 @@ Se crean 2 archivos python que consta de la funcionalidad para consultar el rati
 
 El aplicativo fue creado en lenguaje python, y sus funciones fueron subidas a AWS, donde se definió como arquitectura un Apigateway llamado Registro_Mutante donde se crearon dos metodos(/Mutant POST, y /Mutant/stats GET), 
 estos metodos se asociaron a dos lambda cada una asociada a cada metodo, con el objetivo que puedan trabajar de manera independiente: lambda 1:'Es_Mutante' asociada al metodo /Mutante POS que valida el DNA y lo almacena,
-Lambda 2:'EstadoMutante' asociada al metodo /Mutant/stats que valida el ratio de mutantes VS ADN almacenados.  Adicional se conectó una base de datos Dynamondb para almacenar los registros y consultarlos, ambas lambda 
+Lambda 2:'EstadoMutante' asociada al metodo /Mutant/stats que valida el ratio de mutantes VS ADN almacenados.  Adicional se conectó una base de datos Dynamodb para almacenar los registros y consultarlos, ambas lambda 
 tienen un perfil de rol que le permite acceder a la base de datos de manera full (esto para el ejercicio)., esta base de datos solo tiene una tabla llamada 'RegistrosDna' donde tiene dos llaves cuya	llave de partición 
 es la descripción (Cadena) que es igual al estado si es mutante o no, u la otra llave de ordenación es el ADN (Cadena).
 las URL generada para los metodos y consumo de API rest son:
 
 /Mutant POST Invocar URL: https://ygl6wmaey3.execute-api.us-east-2.amazonaws.com/Test/mutant
+
 body ejemplo (tener presente las condiciones relacionadas al comienzo del documento): 
 	{	
         "dna":["AAAAAA","AAAAA","AAAAA","AAAAA","AAAAC"]
@@ -218,6 +219,7 @@ response
 													se regresa si es Mutante o no es Mutante, en caso de tener fallo en el registro en Base de datos se regresa error que no se pudo almacenar.
 }
 /Mutant/stats GET Invocar URL: Invocar URL: https://ygl6wmaey3.execute-api.us-east-2.amazonaws.com/Test/mutant/stats
+
 sin body
 response
 {
