@@ -30,7 +30,8 @@ import EsMutante
 #diferentes letras Error de estructura
 #dna=("1TGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG")
 #diferentes letras Error de estructura
-dna=("AAAAA","AAAAA","AAAAA","AAAAA","AAAAA")
+#dna=("AAAAA","AAAAA","AAAAA","AAAAA","AAAAA")
+dna=("ATGCGAA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TAATGG")
 #diferentes tamaño Error de estructura
 #dna=("ATGCGA2","CAGTGC","TTATGT","AGAAGG","CCCCTA","TAATG")#diferente tamaño
 x = EsMutante.isMutant(dna)
