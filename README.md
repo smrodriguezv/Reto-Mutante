@@ -68,7 +68,7 @@ se regresa un mensaje 400, que indica que el mensaje se encuentra erroneo. adici
 8. Se procede a contruir el aplicativo con los siguientes pasos:
 8.1.	Se aclara la funcionalidad requerida
 8.2.    Se planifica la contrucción de la solución
-	8.2.1 	Se define arquitectura de la solución (adjunto en el siguiente link)
+	8.2.1 	Se define arquitectura de la solución
 	8.2.2	Se contruyen pruebas unitarias	
 	8.2.3   H.U.1. Se construye funcionalidad Mutante criterios de aceptación ya mencionados., se incluyen pruebas Unitarias. 
 	8.2.4   H.U.2. Se contruye API_REST en AWS de validación Mutante, se configura arquitectura en Nube. se realizan pruebas de PostMan, subir a repositorio GitHub
@@ -204,6 +204,9 @@ estos metodos se asociaron a dos lambda cada una asociada a cada metodo, con el 
 Lambda 2:'EstadoMutante' asociada al metodo /Mutant/stats que valida el ratio de mutantes VS ADN almacenados.  Adicional se conectó una base de datos Dynamodb para almacenar los registros y consultarlos, ambas lambda 
 tienen un perfil de rol que le permite acceder a la base de datos de manera full (esto para el ejercicio)., esta base de datos solo tiene una tabla llamada 'RegistrosDna' donde tiene dos llaves cuya	llave de partición 
 es la descripción (Cadena) que es igual al estado si es mutante o no, u la otra llave de ordenación es el ADN (Cadena).
+
+el diagrama de arquitectura se encuentra en la carpeta del proyecto en el archivo: Arquitectura_Reto_Mutante.png
+
 las URL generada para los metodos y consumo de API rest son:
 
 /Mutant POST Invocar URL: https://ygl6wmaey3.execute-api.us-east-2.amazonaws.com/Test/mutant
