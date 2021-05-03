@@ -100,10 +100,10 @@ class TestEsMutante(unittest.TestCase):
     def test_esMutante_HUMANO_MUTANTE_12(self):
          self.assertEqual(EsMutante.isMutant(("CGCCAT","ACGCTG","ACCTCG","ACTCGA","TGGCGG","TAACAT")),EsMutante.HUMANO_MUTANTE)   
     #Caso30. Humano  Mutante coincide 2 secuencias una horizontal(ultimo regoistro registro GGGG) y otra Oblicua de derecha a izquierda (GGGG)
-    def test_esMutante_HUMANO_MUTANTE_12(self):
+    def test_esMutante_HUMANO_MUTANTE_13(self):
          self.assertEqual(EsMutante.isMutant(("CGCCAT","AGGCCG","ACCTCG","ACTCGA","TGAGGG","TAGGGG")),EsMutante.HUMANO_MUTANTE)   
     
    
 if __name__=='__main__':
     unittest.main()
-    #main()
+    #Mmain()
