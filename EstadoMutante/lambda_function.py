@@ -7,4 +7,4 @@ import EstadoDNA
 def lambda_handler(event, context):
 
     respuesta=EstadoDNA.ratio_mutante()
-    return respuesta,200
+    return respuesta
